@@ -5,10 +5,13 @@ import { ReactNode } from "react";
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import TanStackProvider from "@/components/TanStackProvider";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import AuthProvider from "@/components/AuthProvider";
+import TanStackProvider from "../components/TanStackProvider/TanStackProvider";
+// import Header from "@/components/Header/Header";
+import Header from "../components/Header/Header";
+// import Footer from "@/components/Footer/Footer";
+import Footer from "../components/Footer/Footer";
+// import AuthProvider from "@/components/AuthProvider/AuthProvider";
+import AuthProvider from "../components/AuthProvider/AuthProvider";
 
 const roboto = Roboto({
   subsets: ["latin"],

@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { useAuthStore } from "@/lib/store/authStore";
-import { register, UserRequest } from "@/lib/api/clientApi";
-import { ApiError } from "@/app/api/api";
+import { useAuthStore } from "../../../lib/store/authStore";
+import { register, UserRequest } from "../../../lib/api/clientApi";
+import { ApiError } from "../../../app/api/api";
 import css from "./SignUpPage.module.css";
 
 export default function SignUp() {
