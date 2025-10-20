@@ -16,23 +16,22 @@ export default function EditProfile() {
   const router = useRouter();
 
   useEffect(() => {
+    // Отримуємо поточні дані користувача
     getMe().then((user) => {
       setUserName(user.username);
     });
   }, []);
 
-  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUserName(event.target.value);
-  }
+  };
 
-  function handleCancel() {
+  const handleCancel = () => {
     router.back();
-  }
+  };
 
-  async function handleSaveUser(formData: FormData) {
-    if (!user) {
-      return;
-    }
+  const handleSaveUser = async (formData: FormData) => {
+    if (!user) return;
 
     const username = formData.get("username") as string;
 
@@ -44,14 +43,13 @@ export default function EditProfile() {
       }
     } catch (error) {
       toast.error(
-        (error as ApiError).response?.data?.response?.validation?.body
-          ?.message ??
+        (error as ApiError).response?.data?.response?.validation?.body?.message ??
           (error as ApiError).response?.data?.response?.message ??
           (error as ApiError).response?.data?.error ??
           "Oops... some error"
       );
     }
-  }
+  };
 
   return (
     <main className={css.mainContent}>
@@ -68,33 +66,31 @@ export default function EditProfile() {
           />
         )}
 
-        <form
-          action={handleSaveUser}
-          className={css.profileInfo}>
+        <form action={handleSaveUser} className={css.profileInfo}>
           <div className={css.usernameWrapper}>
-            <label htmlFor="username">Username: {userName}</label>
+            <label htmlFor="username">Username</label>
             <input
               id="username"
               name="username"
               type="text"
               className={css.input}
-              defaultValue={userName}
+              value={userName}
               onChange={handleChange}
+              required
             />
           </div>
 
-          <p>Email: {user?.email || null}</p>
+          <p>Email: {user?.email || "—"}</p>
 
           <div className={css.actions}>
-            <button
-              type="submit"
-              className={css.saveButton}>
+            <button type="submit" className={css.saveButton}>
               Save
             </button>
             <button
               type="button"
               className={css.cancelButton}
-              onClick={handleCancel}>
+              onClick={handleCancel}
+            >
               Cancel
             </button>
           </div>
